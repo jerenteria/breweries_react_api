@@ -7,8 +7,9 @@ const BreweryList = (props) => {
         <ul>
             {props.breweries.map((brewery) => (
                 <Brewery
-                key={brewery.id}
+                id={brewery.id}
                 name={brewery.name}
+                address_1={brewery.address_1}
                 />
             ))}
         </ul>
