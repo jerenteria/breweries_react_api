@@ -10,6 +10,7 @@ const BreweryList = (props) => {
                 id={brewery.id}
                 name={brewery.name}
                 address_1={brewery.address_1}
+                city={brewery.city}
                 />
             ))}
         </ul>

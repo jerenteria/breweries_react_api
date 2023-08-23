@@ -25,7 +25,7 @@ function App() {
 
   return(
     <section>
-      <h1>Hello!</h1>
+      <h1>Welcome To The Fastest Way To Find Your Nearest Brewery!</h1>
       <BreweryList breweries={breweries} />
     </section>
   );
