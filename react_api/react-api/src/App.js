@@ -4,7 +4,7 @@ import Brewery from './components/Brewery';
 import BreweryList from './components/BreweryList';
 
 
-function App() {
+function App(value) {
   const [breweries, setBreweries] = useState([]);
 
   fetch('https://api.openbrewerydb.org/v1/breweries?by_city=san_jose&per_page=')
@@ -17,6 +17,11 @@ function App() {
         }
       }, {});
     return res;
+
+    const results = json.filter((brewery) => {
+      return brewery && brewery.name && brewery.address_1.toLowerCase.includes(value)
+    })
+
   })
   .then(res => res.json())
   .then(data => setBreweries(data))
