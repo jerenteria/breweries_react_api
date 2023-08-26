@@ -18,14 +18,9 @@ function App(value) {
       }, {});
     return res;
 
-    const results = json.filter((brewery) => {
-      return brewery && brewery.name && brewery.address_1.toLowerCase.includes(value)
-    })
-
   })
   .then(res => res.json())
   .then(data => setBreweries(data))
-
 
 
   return(
