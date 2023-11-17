@@ -7,27 +7,37 @@ import Input from './components/Input';
 
 function App(value) {
   const [breweries, setBreweries] = useState([]);
+  const [cityQuery, setCityQuery] = useState('');
 
-  // fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${user_input}&per_page=`)
-  // .then(res => {
-  //   const authHeaders = ['access-token', 'client', 'uid']
-  //     .reduce((result, key) => {
-  //       let val = res.headers.get(key);
-  //       if (val) {
-  //         result[key] = val;
-  //       }
-  //     }, {});
-  //   return res;
+  const handleInputChange = (event) => {
+    setCityQuery(event.target.value);
+  }
 
-  // })
-  // .then(res => res.json())
-  // .then(data => setBreweries(data))
+  const sanitizeCityName = (city) => {
+    return city.replace(/\s+/g, '_');
+  };
+
+  
+  fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=&per_page=`)
+  .then(res => {
+    const authHeaders = ['access-token', 'client', 'uid']
+      .reduce((result, key) => {
+        let val = res.headers.get(key);
+        if (val) {
+          result[key] = val;
+        }
+      }, {});
+    return res;
+
+  })
+  .then(res => res.json())
+  .then(data => setBreweries(data))
 
 
   return (
     <Fragment>
       <Header />
-      <Input />
+      <Input onChange={findBreweries}/>
       <BreweryList breweries={breweries} />
     </Fragment>
 
