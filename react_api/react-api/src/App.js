@@ -17,27 +17,30 @@ function App(value) {
     return city.replace(/\s+/g, '_');
   };
 
+  handleSearch = () => {
+    const sanitizedCity = sanitizeCityName(cityQuery);
+    fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${sanitizeCityName}&per_page=`)
+    .then(res => {
+      const authHeaders = ['access-token', 'client', 'uid']
+        .reduce((result, key) => {
+          let val = res.headers.get(key);
+          if (val) {
+            result[key] = val;
+          }
+        }, {});
+      return res;
   
-  fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=&per_page=`)
-  .then(res => {
-    const authHeaders = ['access-token', 'client', 'uid']
-      .reduce((result, key) => {
-        let val = res.headers.get(key);
-        if (val) {
-          result[key] = val;
-        }
-      }, {});
-    return res;
-
-  })
-  .then(res => res.json())
-  .then(data => setBreweries(data))
+    })
+    .then(res => res.json())
+    .then(data => setBreweries(data))
+  };
+  
 
 
   return (
     <Fragment>
       <Header />
-      <Input onChange={findBreweries}/>
+      <Input />
       <BreweryList breweries={breweries} />
     </Fragment>
 
