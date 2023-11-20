@@ -17,30 +17,37 @@ function App(value) {
     return city.replace(/\s+/g, '_');
   };
 
-  handleSearch = () => {
+  const handleSearch = () => {
     const sanitizedCity = sanitizeCityName(cityQuery);
-    fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${sanitizeCityName}&per_page=`)
-    .then(res => {
-      const authHeaders = ['access-token', 'client', 'uid']
-        .reduce((result, key) => {
-          let val = res.headers.get(key);
-          if (val) {
-            result[key] = val;
-          }
-        }, {});
-      return res;
-  
-    })
-    .then(res => res.json())
-    .then(data => setBreweries(data))
+
+    fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${sanitizedCity}&per_page=3`)
+      .then(res => {
+        const authHeaders = ['access-token', 'client', 'uid']
+          .reduce((result, key) => {
+            let val = res.headers.get(key);
+            if (val) {
+              result[key] = val;
+            }
+          }, {});
+        return res;
+
+      })
+      .then(res => res.json())
+      .then(data => setBreweries(data))
   };
-  
+
 
 
   return (
     <Fragment>
       <Header />
-      <Input />
+      <Input
+        value={cityQuery}
+        onChange={handleInputChange}
+      />
+      <div className="button">
+      <button onClick={handleSearch}>Search</button>
+      </div>
       <BreweryList breweries={breweries} />
     </Fragment>
 

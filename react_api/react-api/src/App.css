@@ -2,3 +2,15 @@
   margin: 0px;
   padding: 0px;
 }
+
+button {
+  font-size: 40px;
+  border-radius: 18px;
+  padding: 10px;
+  background-color: wheat;
+}
+
+.button {
+  margin-top: 4px;
+  text-align: center;
+}
