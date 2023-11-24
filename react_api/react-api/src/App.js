@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, Fragment } from 'react';
 import Header from './UI/Header';
 import BreweryList from './components/BreweryList';
-import Input from './components/Input';
 
 
 function App(value) {
@@ -34,6 +33,7 @@ function App(value) {
       })
       .then(res => res.json())
       .then(data => setBreweries(data))
+
   };
 
 
@@ -41,12 +41,14 @@ function App(value) {
   return (
     <Fragment>
       <Header />
-      <Input
-        value={cityQuery}
-        onChange={handleInputChange}
-      />
+      <div className="input-box">
+        <input
+          value={cityQuery}
+          onChange={handleInputChange}
+        />
+      </div>
       <div className="button">
-      <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
       <BreweryList breweries={breweries} />
     </Fragment>
