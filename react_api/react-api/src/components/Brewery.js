@@ -1,15 +1,16 @@
 import React from 'react';
+import './Brewery.css';
+import Card from './Card';
 
 const Brewery = (props) => {
     return (
-        <section className="breweryList">
-            <li>
+        <Card>
+        <div className="breweryList">
                 <h2>{props.name}</h2>
                 <h2>{props.address_1}</h2>
                 <h2>{props.city}</h2>
-            </li>
-
-        </section>
+        </div>
+        </Card>
     );
 };
 

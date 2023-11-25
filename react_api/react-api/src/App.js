@@ -36,8 +36,6 @@ function App(value) {
 
   };
 
-
-
   return (
     <Fragment>
       <Header />
