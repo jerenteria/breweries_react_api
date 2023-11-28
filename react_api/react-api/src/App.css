@@ -28,3 +28,10 @@ input {
   width: 520px;
   border-radius: 17px;
 }
+
+.top-results-paragraph {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
